@@ -42,5 +42,9 @@ export const dataGalery = [
         title: 'Elifood',
         url: '/images/elifood.png'
     },
+    {
+        title: 'Meet2',
+        url: '/images/meet2.jpg'
+    },
 ]
 

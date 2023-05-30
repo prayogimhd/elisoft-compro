@@ -25,6 +25,7 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   list-style: none;
+  scroll-behavior: smooth !important;
 }
 
 img {
@@ -57,7 +58,11 @@ body {
 
 .nav-active {
   background: #04022993;
-  transition: ease-in-out .4s;
+  transition: ease-in-out 0.4s;
+}
+
+.link-list li:hover {
+  color: #1a7cde;
 }
 
 .menuOpen,
@@ -139,15 +144,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background 0.3s;
+  transition: ease-in-out 0.3s;
 }
 
 .swiper-custom-next {
   right: 0;
+  margin-right: 75px;
 }
 
 .swiper-custom-prev {
   left: 0;
+  margin-left: 75px;
 }
 
 /* Loader */
@@ -271,6 +278,21 @@ body {
   }
 }
 
+@media screen and (min-width: 1400px) {
+  .hero-bg img {
+    width: 845px;
+    height: 735px;
+  }
+
+  .slide-img img {
+    width: 750px;
+    height: 425px;
+  }
+  .tag-footer {
+    font-size: 20px;
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .navbar-list {
@@ -306,17 +328,21 @@ body {
     right: 55px;
   }
 
-  .swiper-custom-next,
+  .swiper-custom-next {
+    top: 42%;
+    margin-right: 10px;
+  }
+
   .swiper-custom-prev {
     top: 42%;
+    margin-left: 10px;
   }
 
   .scroll-up-button {
     padding: 12px 10px;
   }
-  .scrollToUp{
+  .scrollToUp {
     width: 70%;
     height: 60%;
   }
-  
 }

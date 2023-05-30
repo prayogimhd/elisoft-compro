@@ -6,7 +6,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import {Navigation} from "swiper";
+import {EffectCoverflow, Navigation} from "swiper";
 
 import {dataGalery} from '@/data';
 import Image from 'next/image';
@@ -15,20 +15,8 @@ import {motion} from 'framer-motion';
 import {staggerContainer, fadeIn} from '../utils/motion';
 
 export default function Galery() {
-    const handleSlideChange = (swiper) => {
-        const slides = swiper.slides;
-        const activeSlideIndex = swiper.activeIndex;
-
-        slides.forEach((slide, index) => {
-            const scale = index === activeSlideIndex ? 1 : 0.7;
-            const zIndex = index === activeSlideIndex ? 0.6 : 0;
-
-            slide.style.transform = `scale(${scale})`;
-            slide.style.zIndex = zIndex;
-        });
-    };
     return (
-        <>
+        <section id="galery">
             <motion.div className="bg-[#040229] text-center relative pb-[120px] lg:pb-0 md:pb-0"
                 variants={staggerContainer}
                 initial="hidden"
@@ -52,16 +40,26 @@ export default function Galery() {
                         fadeIn('down', 'tween', 0.6, 1)
                 }>What We Do</motion.p>
 
-                <motion.div className="lg:px-[50px] md:px-[120px] px-[50px] mt-[25px] md:mt-[50px] flex justify-center pb-[120px]"
+                <motion.div className="lg:px-[200px] md:px-[120px] px-[50px] mt-[25px] md:mt-[50px] flex justify-center pb-[120px]"
                     variants={
                         fadeIn('down', 'tween', 1, 1)
                 }>
-                    <Swiper spaceBetween={30}
+                    <Swiper
+                        slidesPerView={'auto'}
                         centeredSlides={true}
                         loop={true}
+                        coverflowEffect={{
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 450,
+                        modifier: 2,
+                        }}
+                        effect={'coverflow'}
+                        grabCursor={true}
                         modules={
-                            [Navigation]
+                            [EffectCoverflow,Navigation]
                         }
+                        
                         navigation={
                             {
                                 nextEl: '.swiper-custom-next',
@@ -69,8 +67,8 @@ export default function Galery() {
                                 clickable: true
                             }
                         }
-                        onSlideChange={handleSlideChange}
-                        className="mySwiper"
+                        // onSlideChange={handleSlideChange}
+                        className="mySwiper slide-img"
                         breakpoints={{
                             640 : {
                                 slidesPerView: 1
@@ -88,7 +86,7 @@ export default function Galery() {
                                 <img src={
                                         data.url
                                     }
-                                    className="lg:w-[550px] md:w-[550px] w-[400px]  lg:h-[450px] md:h-[450px] h-[300px] rounded-[34px] object-cover"
+                                    className="lg:w-[550px] lg:h-[100px] h-[300px] md:w-[550px] md:h-[450px] w-[400px]  rounded-[34px] object-cover"
                                     alt={
                                         data.title
                                     }/>
@@ -107,7 +105,7 @@ export default function Galery() {
                     <Image src="/images/ellipse2.svg" alt="ellipse"
                         width={410}
                         height={124}
-                        className="absolute md:bottom-0 bottom-[120px] md:left-[25%] lg:left-[37.5%]"/>
+                        className="absolute md:bottom-8 bottom-[120px] md:left-[25%] lg:left-[37.5%]"/>
                 </motion.div>
                 <Image src="/images/polygon7.svg" alt="polygon"
                     width={169}
@@ -118,6 +116,6 @@ export default function Galery() {
                     height={99}
                     className="absolute -bottom-[175px] left-0 z-[888]"/>
             </motion.div>
-        </>
+        </section>
     )
 }
